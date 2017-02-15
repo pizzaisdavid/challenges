@@ -5,19 +5,19 @@ import java.util.Arrays;
 public class Main {
   
   public static void main(String args[]) {
-    String augend = "4:00:00";
-    String addend = "5:13";
-
+    String augend = "12:59:59";
+    String addend = "0:02";
     Timestamp start = new Timestamp(augend);
     Timestamp duration = new Timestamp(addend); 
-    
     Timestamp current = start.add(duration);
-    
     System.out.println(current);
   }
 }
 
 class Timestamp {
+  private static final int SECONDS_PER_MINUTE = 60;
+  private static final int MINUTES_PER_HOUR = 60;
+  private static final int HOURS_PER_CYCLE = 12;  
   private int hours;
   private int minutes;
   private int seconds;
@@ -38,30 +38,21 @@ class Timestamp {
     this.hours = hours;
     this.minutes = minutes;
     this.seconds = seconds;
+
   }
   
-  public Timestamp add(Timestamp other) {
-    int totalHours = 0;
-    int totalMinutes = 0;
-    int totalSeconds = 0;
+  public Timestamp add(Timestamp other) {    
+    int totalSeconds = seconds + other.seconds;
+    int rolloverMinute = totalSeconds / SECONDS_PER_MINUTE;
+    totalSeconds %= SECONDS_PER_MINUTE;
     
-    totalSeconds = seconds + other.seconds;
-    int plusMinutes = totalSeconds / 60;
-    if (plusMinutes > 0) {
-      totalSeconds = totalSeconds % 60;
-    }
-      
-    totalMinutes = plusMinutes + minutes + other.minutes;
-    int plusHours = totalMinutes / 60;
-    if (plusHours > 0) {
-      totalMinutes = totalMinutes % 60;
-    }
+    int totalMinutes = rolloverMinute + minutes + other.minutes;
+    int rolloverHour = totalMinutes / MINUTES_PER_HOUR;
+    totalMinutes %= MINUTES_PER_HOUR;
     
-    totalHours = plusHours + hours + other.hours;
+    int totalHours = rolloverHour + hours + other.hours;
+    totalHours %= HOURS_PER_CYCLE;
     
-    if (totalHours > 12) {
-      totalHours -= 12;
-    }
     return new Timestamp(totalHours, totalMinutes, totalSeconds);
   }
   
