@@ -1,6 +1,3 @@
-import java.sql.Date;
-import java.util.Arrays;
-
 
 public class Main {
   
@@ -28,9 +25,11 @@ class Timestamp {
       hours = Integer.valueOf(times[0]);
       minutes = Integer.valueOf(times[1]);
       seconds = Integer.valueOf(times[2]);
-    } else {
+    } else if (times.length == 2) {
       minutes = Integer.valueOf(times[0]);
       seconds = Integer.valueOf(times[1]);
+    } else {
+      seconds = Integer.valueOf(raw);
     }
   }
   
