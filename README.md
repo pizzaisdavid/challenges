@@ -18,3 +18,6 @@ public static String counterclockwiseRotate(char[][] matrix) {
   ...
 }
 ```
+
+Combinations order doesn't matter.
+Permutations order matters (A, B, C is different than C, B, A)
