@@ -19,5 +19,26 @@ public static String counterclockwiseRotate(char[][] matrix) {
 }
 ```
 
+## Combinations and Permutations
+
 Combinations order doesn't matter.
+
 Permutations order matters (A, B, C is different than C, B, A)
+
+### Distinguishable Permutations
+
+n!/(k <sub>1</sub>! k<sub>2</sub>!...k<sub>x</sub>)
+
+n = total number of elements
+
+k = the count of that element
+
+```
+Example BOO
+B: 1
+O: 2
+3!/(1! * 2!) = 3
+BOO
+BOB
+OOB
+```
