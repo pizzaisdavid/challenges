@@ -35,9 +35,9 @@ r: number of objects picking
 ### Permutations
 <sub>n</sub>P<sub>r</sub> = n! / (n - r)!
 
-### Distinguishable Permutations
+##### Distinguishable Permutations
 
-n! / (k <sub>1</sub>! k<sub>2</sub>! ... k<sub>x</sub>)
+n! / (k<sub>1</sub>! k<sub>2</sub>! ... k<sub>x</sub>!)
 
 n: total number of elements
 
