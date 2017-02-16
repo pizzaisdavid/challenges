@@ -25,13 +25,23 @@ Combinations order doesn't matter.
 
 Permutations order matters (A, B, C is different than C, B, A)
 
+n: total number of elements
+
+r: number of objects picking
+
+### Combinations
+<sub>n</sub>C<sub>r</sub> = n! / r! (n - r)!
+
+### Permutations
+<sub>n</sub>P<sub>r</sub> = n! / (n - r)!
+
 ### Distinguishable Permutations
 
-n!/(k <sub>1</sub>! k<sub>2</sub>!...k<sub>x</sub>)
+n! / (k <sub>1</sub>! k<sub>2</sub>! ... k<sub>x</sub>)
 
-n = total number of elements
+n: total number of elements
 
-k = the count of that element
+k: the count of that element
 
 ```
 Example BOO
