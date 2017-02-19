@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="AlphabetSwitch/src"/>
+	<classpathentry kind="src" path="ASCII_Art/src"/>
+	<classpathentry kind="src" path="brains/src"/>
+	<classpathentry kind="src" path="ClockwiseMatrixPrinter/src"/>
+	<classpathentry kind="src" path="EndOfLine/src"/>
+	<classpathentry kind="src" path="IncreasingDigits/src"/>
+	<classpathentry kind="src" path="MarioPow/src"/>
+	<classpathentry kind="src" path="Mastermind/src"/>
+	<classpathentry kind="src" path="PegCombinations/src"/>
+	<classpathentry kind="src" path="Permutations/src"/>
+	<classpathentry kind="src" path="RecursiveGridSearch/src"/>
+	<classpathentry kind="src" path="TheBabelFish/src"/>
+	<classpathentry kind="src" path="TimeAddition/src"/>
+	<classpathentry kind="src" path="TriangularWordSearch/src"/>
+	<classpathentry kind="src" path="TshirtLogo/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="ASCII_Art/bin"/>
+</classpath>
