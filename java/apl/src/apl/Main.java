@@ -8,7 +8,15 @@ public class Main {
   }
   
   public static int apl(String question) {
-    
+    /*
+     * for all first layer parentheses
+     * - 1 remove parentheses
+     * - 2 call apl on and recombine
+     * 
+     * for all math right to left:  <--
+     * - while not Integer.parse(question)
+     * - combine using last symbol
+    */
     return 0;
   }
   
