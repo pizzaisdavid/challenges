@@ -1,18 +1,22 @@
 
 public class LinkedList<T> {
   private AbstractNode<Object> head;
+  private AbstractNode<Object> tail;
   
   public LinkedList() {
-    head = new NullNode();
+    head = Node.NULL;
+    tail = Node.NULL;
   }
 
   public void append(T value) {
-    if (head.isNull()) {
-      head = new Node<T>(value, new NullNode());
+    Node<T> node = new Node<T>(value);
+    if (head == Node.NULL) {
+      head = node;
+      tail = node;
     } else {
-      head.append(value);
+      tail.setNext(node);
+      tail = node;
     }
-    //head = head.append(value);
   }
   
   public String toString() {

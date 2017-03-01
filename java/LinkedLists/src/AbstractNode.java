@@ -1,10 +1,6 @@
 
-public abstract class AbstractNode<T> {
-  protected T value;
-  protected AbstractNode<Object> next; 
-
+public interface AbstractNode<T> {
   abstract public void setNext(AbstractNode<T> node);
   abstract public String toString();
-  abstract public boolean isNull();
   abstract public void append(T value);
 }
