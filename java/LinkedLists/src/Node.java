@@ -4,8 +4,12 @@ public class Node<T> extends AbstractNode<Object> {
   private AbstractNode<Object> next; 
   
   public Node(T value) {
+    this(value, Node.NULL);
+  }
+
+  public Node(T value, AbstractNode<Object> next) {
     this.value = value;
-    this.next = Node.NULL;
+    this.next = next;
   }
 
   @Override
@@ -19,12 +23,9 @@ public class Node<T> extends AbstractNode<Object> {
   }
 
   @Override
-  public void append(Object value) {
-    if (next == Node.NULL) {
-      next = new Node<Object>(value);
-    }  else {
-      next.append(value);
-    }
+  public AbstractNode<Object> append(Object value) {
+    next = next.append(value);
+    return this;
   }
 
   @Override

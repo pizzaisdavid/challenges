@@ -7,11 +7,7 @@ public class LinkedList<T> {
   }
 
   public void append(T value) {
-    if (head == Node.NULL) {
-      head = new Node<T>(value);
-    } else {
-      head.append(value);
-    }
+    head = head.append(value);
   }
   
   public String toString() {

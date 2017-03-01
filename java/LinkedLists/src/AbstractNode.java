@@ -4,11 +4,12 @@ public abstract class AbstractNode<T> {
   
   abstract public void setNext(AbstractNode<T> node);
   abstract public String toString();
-  abstract public void append(T value);
+  abstract public AbstractNode<Object> append(T value);
   abstract public boolean contains(T other);
   abstract public AbstractNode<Object> delete(T other);
   
   private static class NullNode extends AbstractNode<Object> {
+    
     @Override
     public void setNext(AbstractNode<Object> node) {
       throw new NullPointerException();
@@ -20,8 +21,8 @@ public abstract class AbstractNode<T> {
     }
 
     @Override
-    public void append(Object value) {
-      throw new NullPointerException();
+    public AbstractNode<Object> append(Object value) {
+      return new Node<Object>(value, this);
     }
 
     @Override
