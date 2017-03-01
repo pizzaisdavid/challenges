@@ -1,6 +1,5 @@
 
-public class Node<T> implements AbstractNode<Object> {
-  public static final AbstractNode<Object> NULL = new NullNode();
+public class Node<T> extends AbstractNode<Object> {
   private T value;
   private AbstractNode<Object> next; 
   
@@ -27,21 +26,20 @@ public class Node<T> implements AbstractNode<Object> {
       next.append(value);
     }
   }
-  
-  private static class NullNode implements AbstractNode<Object> {
-    @Override
-    public void setNext(AbstractNode<Object> node) {
-      throw new NullPointerException();
-    }
 
-    @Override
-    public String toString() {
-      return "";
-    }
+  @Override
+  public boolean contains(Object other) {
+    return other.equals(value) || next.contains(other);
+  }
 
-    @Override
-    public void append(Object value) {
-      throw new NullPointerException();
+  @Override
+  public AbstractNode<Object> delete(Object other) {
+    if (other.equals(value)) {
+      return next;
+    } else {
+      next = next.delete(other);
+      return this;
     }
+    
   }
 }
