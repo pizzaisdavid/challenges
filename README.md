@@ -52,7 +52,11 @@ BOO
 BOB
 OOB
 ```
-
+```Java 
+  public static boolean isPalindrome(String s) {
+    return new StringBuilder(s).reverse().toString().equals(s);
+  } 
+```
 
 import java.util.HashMap;
 Map<String, String> dictionary = new HashMap<String, String>();
