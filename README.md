@@ -52,3 +52,7 @@ BOO
 BOB
 OOB
 ```
+
+
+import java.util.HashMap;
+Map<String, String> dictionary = new HashMap<String, String>();
