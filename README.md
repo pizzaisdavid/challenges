@@ -53,6 +53,12 @@ BOB
 OOB
 ```
 ```Java 
+  import java.util.HashMap;
+  Map<String, String> dictionary = new HashMap<String, String>();
+  String key = "test";
+  STring value = "something";
+  dictionary.put(key, value);
+
   public static boolean isPalindrome(String s) {
     return new StringBuilder(s).reverse().toString().equals(s);
   } 
@@ -64,6 +70,3 @@ OOB
   }
   
 ```
-
-import java.util.HashMap;
-Map<String, String> dictionary = new HashMap<String, String>();
