@@ -56,6 +56,13 @@ OOB
   public static boolean isPalindrome(String s) {
     return new StringBuilder(s).reverse().toString().equals(s);
   } 
+  
+  public static int stringToInt(String s) {
+	  Integer y = 0;
+	  y = Integer.parseInt(s);
+    return y;
+  }
+  
 ```
 
 import java.util.HashMap;
