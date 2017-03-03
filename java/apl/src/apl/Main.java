@@ -2,25 +2,59 @@ package apl;
 
 public class Main {
   public static void main(String args[]) {
-    
-    int answer = apl("");
-    
+    String input = "(((((103)))))";
+    Expression expression = new Expression(input);
+    Token answer = apl(expression);
+    System.out.println(answer);  
   }
-  
-  public static int apl(String question) {
-    /*
-     * for all first layer parentheses
-     * - 1 remove parentheses
-     * - 2 call apl on and recombine
-     * 
-     * for all math right to left:  <--
-     * - while not Integer.parse(question)
-     * - combine using last symbol
-    */
-    return 0;
+
+  public static Token apl(Expression expression) {
+    System.out.println(expression);
+    expression.dropWrappingParentheses();
+    while(expression.isSimplified() == false) {
+      Token trailing;
+      if (expression.endsWithClosingParentheses()) {
+        Expression sub = expression.getFirstLayerParentheses();
+        System.out.println("sub: " + sub);
+        trailing = apl(sub);
+      } else {
+        trailing = expression.popLast();
+      }
+      Token symbol = expression.popLast();
+      Token leading;
+      if (expression.endsWithClosingParentheses()) {
+        Expression sub = expression.getFirstLayerParentheses();
+        System.out.println("sub: " + sub);
+        leading = apl(sub);
+      } else {
+        leading = expression.popLast();
+      }
+      System.out.println("trailing: " + trailing);
+      System.out.println("symbol: " + symbol);
+      System.out.println("leading: " + leading);
+      expression.add(operate(leading, symbol, trailing));
+      System.out.println(expression);
+    }
+    return expression.popLast();
   }
-  
-  public static String cutCrust(String text) {
-    return text.substring(1, text.length() - 1);
+
+  private static Token operate(Token leading, Token symbol, Token trailing) {
+    int lead = leading.getValue();
+    char sym = symbol.getSymbol();
+    int tail = trailing.getValue();
+    
+    switch(sym) {
+    case '+':
+      return new Token(lead + tail);
+    case '-':
+      return new Token(lead - tail);
+    case '*':
+      return new Token(lead * tail);
+    case '/':
+      return new Token(lead / tail);
+    default:
+      System.out.println("Failure");
+      return new Token(0);
+    }
   }
 }
