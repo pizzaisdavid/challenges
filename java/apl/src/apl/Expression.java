@@ -13,7 +13,6 @@ public class Expression {
   
   public Expression(String value) {
     this.tokens = parse(value);
-    System.out.println(Arrays.toString(this.tokens.toArray()));
   }
 
   private static List<Token> parse(String input) {
