@@ -1,22 +1,17 @@
 import math
 from decimal import localcontext, Decimal
 
-
 def main():
     count = 1
-    with open("prob1.in") as cin, open("prob1.out", "w") as cout:
+    with open("prob1.in", "r") as cin, open("prob1.out", "w") as cout:
         number = int(cin.readline())
         while number != 0:
-            try:
-                print(number)
-                answer = dist(number)
-                message = "Case " + str(count) + ": There are " + str(answer) + " possible orderings.\n"
-                print(message)
-                cout.write(message)
-                count += 1
-                number = int(cin.readline())
-            except IndexError:
-                break
+            answer = dist(number)
+            message = str.format("Case {}: There are {} possible orderings.\n", count, answer)
+            print(message)
+            cout.write(message)
+            count += 1
+            number = int(cin.readline())
 
 def dist(numberOfDistricts):
     numberOfPlayers = numberOfDistricts * 2
@@ -26,8 +21,6 @@ def dist(numberOfDistricts):
         cont.prec = 1000
         answer = Decimal(numerator) / Decimal(denominator)
         return answer;
-    
-    
 
 if __name__ == "__main__":
     main()
