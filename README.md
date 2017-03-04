@@ -43,7 +43,7 @@ n: total number of elements
 
 k: the count of that element
 
-```
+```Python
 Example BOO
 B: 1
 O: 2
@@ -51,6 +51,9 @@ O: 2
 BOO
 BOB
 OOB
+
+def distinguishable_permutations(text, size):
+    return sorted({p for p in permutations(text, size)})
 ```
 ```Java 
   import java.util.HashMap;
