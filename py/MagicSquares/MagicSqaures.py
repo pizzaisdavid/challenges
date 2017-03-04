@@ -2,21 +2,18 @@
 from itertools import combinations
 
 def main():
-    GOAL = ["1", "1", "1", "1", "0", "1", "1", "1", "1"]
     pool = [n for n in range(1, 10)]
-    allLengthCombos = compute_all_length_combinations(pool);
+    combinations = compute_all_length_combinations(pool);
     
-    with open("prob1.in") as ins, open("probl.out", "w+") as outs:
-        while ins.next():
+    with open("prob1.in", "r") as ins, open("probl.out", "w+") as outs:
+        grid = parse(ins.readline()) + parse(ins.readline()) + parse(ins.readline())
+        ins.readline()
+        while grid != []:
+            solution = findSolution(combinations, grid)
+            print(solution)
+            outs.write(" ".join([str(x) for x in solution]) + "\n")
             grid = parse(ins.readline()) + parse(ins.readline()) + parse(ins.readline())
-            ins.readline() # there is a blank line between grids
-            for combo in allLengthCombos:
-                table = list(grid)
-                for move in combo:
-                    transform(table, move)
-                if (table == GOAL):
-                    print(combo)
-                    break
+            ins.readline()
         print("done")
 
 def parse(text):
@@ -27,7 +24,18 @@ def compute_all_length_combinations(pool):
     for size in range(1, len(pool) + 1):
         possible += list(combinations(pool, size))
     return possible;
-        
+
+def findSolution(combinations, grid):
+    GOAL = ["1", "1", "1", "1", "0", "1", "1", "1", "1"]
+    print(grid)
+    for combo in combinations:
+        table = list(grid)
+        for move in combo:
+            transform(table, move)
+        if (table == GOAL):
+            return combo
+    print(grid)
+    return ()
 
 def transform(grid, number):
     flips = {1 : [1, 2, 4, 5],
