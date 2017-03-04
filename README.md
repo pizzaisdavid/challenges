@@ -52,8 +52,9 @@ BOO
 BOB
 OOB
 
-def distinguishable_permutations(text, size):
-    return sorted({p for p in permutations(text, size)})
+def distinguishable_permutations(text):
+    # returns an array of tuples
+    return sorted({p for p in permutations(text, len(text))})
 ```
 ```Java 
   import java.util.HashMap;
