@@ -83,16 +83,13 @@ public class Sudoku {
 
   public Cell[][] solve() {
     while (hasEmptyCell()) {
-      updateCellConstrictions();
+      updateCellConstrictions(); // do the basic strat
       if (same(content, previous)) {
+        // we are stuck.
         Cell[][] guess = copy(content);
         List<Cell> cellsWithOrderedByPossibleValues = getLeast(guess);
-        // we are stuck.
-        // TODO guess
         cellsWithOrderedByPossibleValues.get(0).guess();
-        
         Sudoku poo = new Sudoku(guess);
-        
         Cell[][] guessBoard = poo.solve();
         if (poo.hasEmptyCell()) {
           cellsWithOrderedByPossibleValues.get(0).removeFailedGuess();
@@ -100,12 +97,10 @@ public class Sudoku {
           content = guessBoard;
         }
       }
-      
       if (hasMadeError()) {
         System.out.println("ERROR BOARD");
         return previous;
       }
-      
       previous = copy(content);
     }
     return content;
