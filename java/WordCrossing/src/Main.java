@@ -35,9 +35,6 @@ public class Main {
       CrossWord game = new CrossWord(board);
       game.solve(words);
       
-      System.out.println();
-      System.out.println("BOARD:");
-      System.out.println(game);
     }
   }
 }

@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class CrossWord {
   private static final char VALID_PLACE_FOR_A_LETTER = '*';
@@ -11,34 +13,47 @@ public class CrossWord {
   }
 
   public void solve(List<String> words) {
-    board = solve(board, words);
+    solve(board, words);
   }
 
-  private char[][] solve(char[][] board, List<String> words) {
+  private void solve(char[][] board, List<String> words) {
+    print(board);
     if (words.isEmpty()) {
+      Scanner reader = new Scanner(System.in);
+      System.out.println("PAUSED Press anything to continue");
+      reader.nextLine();
+      reader.close();
       System.out.println("DONE");
-      System.out.println(this);
-    }
-    char[][] hypotheticalBoard = copy(board);    
-    WordSlot slot = findNextOpening(hypotheticalBoard);
-    System.out.println("LINE=" + slot);
-    
-    for (String word : words) {
-      if (slot.fits(word)) {
-        
-        fill(hypotheticalBoard, slot, word);
-        List<String> hypotheticalWords = copy(words);
-        hypotheticalWords.remove(word);
-        solve(hypotheticalBoard, hypotheticalWords);
+    } else {
+      WordSlot slot = findNextOpening(board);
+      System.out.println(slot);
+      System.out.println("WORDS=" + Arrays.toString(words.toArray()));
+  
+      for (String word : words) {
+        if (slot.fits(word)) {
+          System.out.println(word);
+          char[][] hypotheticalBoard = copy(board);    
+          fill(hypotheticalBoard, slot, word);
+          List<String> hypotheticalWords = copy(words);
+          hypotheticalWords.remove(word);
+          solve(hypotheticalBoard, hypotheticalWords);
+        }
       }
     }
-    
-    return hypotheticalBoard;
+  }
+
+  private void print(char[][] board) {
+    for (int i = 0; i < board.length; i++) {
+      char[] row = board[i];
+      for (int j = 0; j < row.length; j++) {
+        System.out.print(board[i][j]);
+      }
+      System.out.println();
+    }
   }
 
   private void fill(char[][] board, WordSlot slot, String word) {
-    // TODO stuff
-    
+    System.out.println("FILLING " + slot);
     if (slot.getDirection() == Direction.VERTICAL) {
       fillVertical(board, slot, word);
     } else {
@@ -55,7 +70,7 @@ public class CrossWord {
     }
   }
   
-  private void fillHorizontal(char[][] board2, WordSlot slot, String word) {
+  private void fillHorizontal(char[][] board, WordSlot slot, String word) {
     int x = slot.getI();
     int y = slot.getJ();
     for (int i = 0; i < word.length(); i++) {
