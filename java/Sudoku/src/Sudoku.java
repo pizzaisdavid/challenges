@@ -2,22 +2,8 @@
 public class Sudoku {
   private Cell[][] content;
   
-  public Sudoku(char [][] grid) {
-    for (int columnIndex = 0; columnIndex < grid.length; columnIndex++) {
-      int rowLength = grid[columnIndex].length;
-      
-      for (int rowIndex = 0; rowIndex < rowLength; rowIndex++) {
-        char value = grid[columnIndex][rowIndex];
-        Cell cell;
-        if (value == ' ') {
-          cell = new Cell();
-        } else {
-          int number = Character.getNumericValue(value);
-          cell = new Cell(number);
-        }
-        content[columnIndex][rowIndex] = cell;
-      }
-    }
+  public Sudoku(Cell [][] grid) {
+    content = grid;
   }
   
   public String toString() {
@@ -31,5 +17,24 @@ public class Sudoku {
       string += "\n";
     }
     return string;
+  }
+
+  public void solve() {
+    while (hasEmptyCell()) {
+      //Cell cellWithTheLeastAmountOfOptions 
+    }
+  }
+
+  private boolean hasEmptyCell() {
+    for (int columnIndex = 0; columnIndex < content.length; columnIndex++) {
+      int rowLength = content[columnIndex].length;
+      for (int rowIndex = 0; rowIndex < rowLength; rowIndex++) {
+        Cell cell = content[columnIndex][rowIndex];
+        if (cell.isEmpty()) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }
