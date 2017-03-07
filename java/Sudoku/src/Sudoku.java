@@ -74,7 +74,12 @@ public class Sudoku {
   public void solve() {
     while (hasEmptyCell()) {
       updateCellConstrictions();
+      // TODO no progress was made,
+      // make a list of the most constricted, and take a guess, try to solve, if it fails record
+      
       System.out.println(this);
+      
+      
       Scanner reader = new Scanner(System.in);  // Reading from System.in
       System.out.println("Enter a number: ");
       String n = reader.nextLine();
@@ -115,6 +120,7 @@ public class Sudoku {
       }
       text += "\n";
     }
+    text += "\n";
     text += "board\n";
     for (int x = 0; x < content.length; x++) {
       Cell[] column = content[x];
