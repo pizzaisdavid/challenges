@@ -1,4 +1,5 @@
 import itertools
+import math
 
 '''
  n     perms      repeats     dominoes (difference)
@@ -30,35 +31,18 @@ def main():
             for case in cases:
                 if case == 0:
                     return 0;
-                dominoes = calculate(case)
+                length = calculate(case)
                 print("CASE=", case)
-                print("LENGTH=", len(dominoes))
-                outFile.write("Case {}: There are {} triominoes number to {}\n".format(count, len(dominoes), case))
+                outFile.write("Case {}: There are {} triominoes number to {}.\n".format(count, length, case))
                 count += 1
                 
 
 def calculate(n):
-    dominoes = []
     perms = list(itertools.product(range(1, n + 1), repeat=3))
-    print("PERMS=", len(perms))
-    for perm in perms:
-        if isDominoeIn(perm, dominoes) == False:
-            dominoes.append(perm)
-    print("REPEATS=", len(perms) - len(dominoes))
-    return dominoes
-
-def isDominoeIn(target, dominoes):
-    for d in dominoes:
-        if (isIn(target, d)):
-            return True
-    return False
-
-def isIn(target, current):
-    return any([target[0] == current[2] and target[1] == current[0] and target[2] == current[1],
-                target[1] == current[2] and target[0] == current[1] and target[2] == current[0]])
-        
-
-
+    permCount = len(perms)
+    repeats = (2 / 3) * math.pow(n, 3) - (2 / 3) * n
+    repeats = math.ceil(repeats)
+    return permCount - repeats
 
 
 
