@@ -2,22 +2,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cell {
+  private Coordinate position;
   private int value;
   private List<Integer> possibilities;
   
-  public Cell(char value) {
+  public Cell(Coordinate position, char value) {
+    this.position = position;
     if (value == ' ') {
-      this.value = -1;
-      possibilities = new ArrayList<Integer>();
-      for (int i = 1; i < 10; i++) {
-        possibilities.add(i);
-      }
+      setupEmptyCell();
     } else {
-      this.value = Character.getNumericValue(value);
-      possibilities = new ArrayList<Integer>();
+      setupFilledCell(value);
+    }
+  }
+
+  private void setupEmptyCell() {
+    value = -1;
+    possibilities = new ArrayList<Integer>();
+    for (int i = 1; i < 10; i++) {
+      possibilities.add(i);
     }
   }
   
+  private void setupFilledCell(char value) {
+    this.value = Character.getNumericValue(value);
+    possibilities = new ArrayList<Integer>();
+  }
+
   public String toString() {
     if (value == -1) {
       return " ";

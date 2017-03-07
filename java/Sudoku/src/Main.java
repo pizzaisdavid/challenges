@@ -6,25 +6,25 @@ import java.util.Scanner;
 public class Main {
   
   public static void main(String args[]) throws FileNotFoundException {
-    int HEIGHT = 9;
     int WIDTH = 9;
+    int HEIGHT = 9;
     
     Scanner in = new Scanner(new File("prob6.in"));
     PrintWriter out = new PrintWriter("prob.out");
     
-    Cell grid[][] = new Cell[HEIGHT][WIDTH];
+    Cell grid[][] = new Cell[WIDTH][HEIGHT];
     
-    for (int i = 0; i < HEIGHT; i++) {
-      char row[] = in.nextLine().toCharArray();
-      for (int k = 0; k < WIDTH; k++) {
-        char value = row[k];
-        Coordinate position = new Coordinate(k, i);
-        grid[i][k] = new Cell(value);
+    for (int x = 0; x < WIDTH; x++) {
+      char column[] = in.nextLine().toCharArray();
+      for (int y = 0; y < HEIGHT; y++) {
+        char value = column[y];
+        Coordinate position = new Coordinate(x, y);
+        grid[x][y] = new Cell(position, value);
       }
     }
     
     Sudoku sudoku = new Sudoku(grid);
-    sudoku.solve();
+    //sudoku.solve();
     System.out.println(sudoku);
     
     
