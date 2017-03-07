@@ -1,4 +1,9 @@
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 public class Sudoku {
@@ -7,9 +12,14 @@ public class Sudoku {
   private Cell[][] content;
   private Cell[][] clusters;
   private Cell[][] verticals;
+  private Cell[][] previous;
+  private boolean haveGuessed;
   
   public Sudoku(Cell [][] grid) {
+    System.out.println("MAKING GRID");
     content = grid;
+    previous = copy(content);
+    haveGuessed = false;
     setupClusters();
     setupVerticals();
     updateCellConstrictions();
@@ -71,13 +81,94 @@ public class Sudoku {
     }
   }
 
-  public void solve() {
+  public Cell[][] solve() {
     while (hasEmptyCell()) {
       updateCellConstrictions();
-      Scanner reader = new Scanner(System.in);
-      System.out.println(pretty());
-      reader.nextLine();
+      if (same(content, previous)) {
+        Cell[][] guess = copy(content);
+        List<Cell> cellsWithOrderedByPossibleValues = getLeast(guess);
+        // we are stuck.
+        // TODO guess
+        cellsWithOrderedByPossibleValues.get(0).guess();
+        
+        Sudoku poo = new Sudoku(guess);
+        
+        Cell[][] guessBoard = poo.solve();
+        if (poo.hasEmptyCell()) {
+          cellsWithOrderedByPossibleValues.get(0).removeFailedGuess();
+        } else {
+          content = guessBoard;
+        }
+      }
+      
+      if (hasMadeError()) {
+        System.out.println("ERROR BOARD");
+        return previous;
+      }
+      
+      previous = copy(content);
     }
+    return content;
+  }
+
+  private boolean hasMadeError() {
+    for (int columnIndex = 0; columnIndex < content.length; columnIndex++) {
+      int rowLength = content[columnIndex].length;
+      for (int rowIndex = 0; rowIndex < rowLength; rowIndex++) {
+        Cell cell = content[columnIndex][rowIndex];
+        if (cell.hasError()) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  private List<Cell> getLeast(Cell[][] guess) {
+    List<Cell> least = new ArrayList<Cell>();
+    for (int i = 0; i < guess.length; i++) {
+      for (int j = 0; j < guess[i].length; j++) {
+        Cell cell = guess[i][j];
+        if (cell.isEmpty()) {
+          least.add(cell);
+        }
+      }
+    }
+    
+    Collections.sort(least, new Comparator<Cell>() {
+
+      @Override
+      public int compare(Cell first, Cell second) {
+        return first.getPossibilities().size() - second.getPossibilities().size();
+      }
+      
+    });
+    System.out.println(Arrays.toString(least.toArray()));
+    return least;
+  }
+
+  private Cell[][] copy(Cell[][] target) {
+    Cell[][] poop = new Cell[9][9];
+    for (int i = 0; i < target.length; i++) {
+      for (int j = 0; j < target[i].length; j++) {
+        poop[i][j] = new Cell(target[i][j]);
+      }
+    }
+    return poop;
+  }
+
+  private boolean same(Cell[][] a, Cell[][] b) {
+    for (int i = 0; i < a.length; i++) {
+      Cell[] row = a[i];
+      for (int j = 0; j < row.length; j++) {
+        Cell cellA = a[i][j];
+        Cell cellB = b[i][j];
+        if (cellA.equals(cellB) == false) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   private boolean hasEmptyCell() {

@@ -10,8 +10,8 @@ public class Main {
     int HEIGHT = 9;
     int count = 1;
     Scanner in = new Scanner(new File("prob6.in"));
-    PrintWriter out = new PrintWriter("prob.out");
-    
+    PrintWriter out = new PrintWriter("prob6.out");
+    System.out.println("SHIT");
     while (true) {
       try {
         Cell grid[][] = new Cell[WIDTH][HEIGHT];
@@ -19,19 +19,27 @@ public class Main {
           char row[] = in.nextLine().toCharArray();
           for (int j = 0; j < WIDTH; j++) {
             char value = row[j];
-            Coordinate position = new Coordinate(j, i);
-            grid[i][j] = new Cell(position, value);
+            System.out.print(value);
+            grid[i][j] = new Cell(value);
           }
+          System.out.println();
         }
+        try {
         in.nextLine();
+        } catch(Exception e) {
+          System.out.println("fail");
+        }
         Sudoku sudoku = new Sudoku(grid);
         sudoku.solve();
         out.println("Case " + count);
         out.println();
         out.println(sudoku.pretty());
-        count++;
+        System.out.println("Case " + count);
         System.out.println(sudoku.pretty());
+        count++;
       } catch (Exception e) {
+        System.out.println(e.getMessage());
+        System.out.println("FAILED TO PARSE");
         break;
       }
     }
