@@ -25,6 +25,7 @@ public class Main {
       }
     }
     System.out.println("killed: " + killed);
+    System.out.println(killed / factorial(count));
   }
 
   private static int factorial(int count) {

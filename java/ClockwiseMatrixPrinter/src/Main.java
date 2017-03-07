@@ -1,21 +1,37 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class Main {
 	
-	public static void main(String args[]) {
-		char [][] matrix = {
-	        {'D', 'C', 'B', 'A'},
-	        {'E', 'N', 'M', 'L'},
-	        {'F', 'O', 'P', 'K'},
-	        {'G', 'H', 'I', 'J'}
-		};
+	public static void main(String args[]) throws FileNotFoundException {
+	  Scanner in = new Scanner(new File("prob.in"));
+	  PrintWriter out = new PrintWriter("prob.out");
+		
+		while (in.hasNextLine()) {
+      int height = in.nextInt();
+		  int width = in.nextInt();
+      in.nextLine();
+	    char[][] matrix = new char[width][height];
+		  for (int i = 0; i < height; i++) {
+		    matrix[i] = in.nextLine().toCharArray();
+		  }
+		  
+		  for (int x = 0; x < matrix.length; x++) {
+		    char[] column = matrix[x];
+		    for (int y = 0; y < column.length; y++) {
+		      char cell = column[y];
+		      System.out.print(cell);
+		    }
+		    System.out.println();
+		  }
+		}
+		in.close();
+		out.close();
 	}
 	
 	public static String counterclockwiseRotate(char[][] matrix) {
-		/* TODO 
-		 * while (matrix.length())
-		 * rotate around he outer most ring.
-		 * remove the outer most ring, return
-		 * */
 		String found = "";
 		while (matrix.length != 0) {
 			found = appendOuterRing(matrix, found);
