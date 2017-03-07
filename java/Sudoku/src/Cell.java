@@ -61,9 +61,6 @@ public class Cell {
 
   private void updateNeighborConstrictions(Cell[] sequence) {
     // If you're the only one with a number in your possibilities list, you are that number.
-    for (int i = 0; i < sequence.length; i++) {
-      System.out.println("UNSOLVED NEG " + sequence[i]);
-    }
     for (int pos : possibilities) {
       if (noOneElseHas(pos, sequence)) {
         System.out.println("DONEONE");
@@ -88,11 +85,6 @@ public class Cell {
 
   private boolean has(int possible) {
     return possibilities.contains(possible);
-  }
-
-  private List<Integer> removeCommonPossibilities(List<Integer> unquiepossibilities) {
-    unquiepossibilities.removeAll(possibilities);
-    return unquiepossibilities;
   }
 
   private int getValue() {
