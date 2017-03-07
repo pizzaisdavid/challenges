@@ -14,17 +14,17 @@ public class Main {
     
     Cell grid[][] = new Cell[WIDTH][HEIGHT];
     
-    for (int x = 0; x < WIDTH; x++) {
-      char column[] = in.nextLine().toCharArray();
-      for (int y = 0; y < HEIGHT; y++) {
-        char value = column[y];
-        Coordinate position = new Coordinate(x, y);
-        grid[x][y] = new Cell(position, value);
+    for (int i = 0; i < HEIGHT; i++) {
+      char row[] = in.nextLine().toCharArray();
+      for (int j = 0; j < WIDTH; j++) {
+        char value = row[j];
+        Coordinate position = new Coordinate(j, i);
+        grid[i][j] = new Cell(position, value);
       }
     }
     
     Sudoku sudoku = new Sudoku(grid);
-    //sudoku.solve();
+    sudoku.solve();
     System.out.println(sudoku);
     
     
