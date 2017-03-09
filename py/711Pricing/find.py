@@ -3,8 +3,8 @@ from itertools import combinations_with_replacement
 import math
 
 def main():
-    count = 4   # <= change this to try it
-    goal = 6.44 # <= change this to try it
+    count = 3   # <= change this to try it
+    goal = 4.90 # <= change this to try it
 
     '''
     FAILS:

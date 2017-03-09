@@ -1,4 +1,7 @@
 
+idea don't add number if already in list
+
+
 count		total		solution
 2		4.00		2.00, 2.00
 3		6.00		1.00, 2.00, 3.00
@@ -39,6 +42,35 @@ ways to make 		644
 			      125    184
 				  
 
-    [175, 368.0, 160, 230.0]
+
+
+ways to make                 7.98
+                            /   \
+     this side dies     1.05     7.6
+     because most               /   \     
+     products will          1.25     6.08
+     be more than                   /    \
+     the original.              1.28      4.75
+                                         /    \
+                                     1.25      3.8
+                                              /   \
+                                          1.25     3.04
+                                                  /    \
+                                              1.52      2.0
+                                                       /   \
+                                                   1.25     1.6
+                                                           /   \
+                                                       1.25    1.28 
+                                          
+
+
+
+
+
+
+
+
+
+
 
 	
