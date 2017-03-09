@@ -48,10 +48,11 @@ def isMatching(value, key):
 
 def dollar_range(total):
     CENT = 0.01
-    i = CENT
-    while i < total:
+    i = total
+    smallest = CENT * 50
+    while i > smallest:
         yield round(i, 2)
-        i += CENT
+        i -= CENT
 
 def isDollar(n):
     temp = round(n, 8)
