@@ -72,5 +72,8 @@ def distinguishable_permutations(text):
 	  y = Integer.parseInt(s);
     return y;
   }
-  
+  public static double format(double d) {
+    DecimalFormat formatter = new DecimalFormat("#.00");
+    return Double.parseDouble(formatter.format(d));
+  }
 ```
