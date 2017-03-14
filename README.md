@@ -78,7 +78,7 @@ def distinguishable_permutations(text):
 ```
 
 ###Helper functions
-```
+```Java
   public static boolean isPalindrome(String s) {
     return new StringBuilder(s).reverse().toString().equals(s);
   } 
